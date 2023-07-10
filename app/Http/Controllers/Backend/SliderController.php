@@ -6,6 +6,7 @@ use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+
 class SliderController extends Controller
 {
     /**
@@ -13,8 +14,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $slider_info=Slider::all();
-        return view('Backend.Slider.index',compact('slider_info'));
+        $slider_info = Slider::all();
+        return view('backend.Slider.index', compact('slider_info'));
     }
 
     /**
@@ -22,7 +23,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('Backend.Slider.create');
+        return view('backend.Slider.create');
     }
 
     /**
@@ -31,28 +32,24 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'slider_tittle' => 'required',
-            'slider_subtittle' => 'required',
-            'slider_image' => 'required',
+            'slider_title' => 'required',
+            'slider_description' => 'required',
+            'slider_image' => 'required|mimes:png,jpg,jpeg|max:1024',
         ]);
 
         $slider = new Slider();
-
-        $slider->slider_tittle = $request->slider_tittle;
-        $slider->slider_subtittle = $request->slider_subtittle;
-
+        $slider->slider_tittle = $request->slider_title;
+        $slider->slider_subtittle = $request->slider_description;
         if ($request->hasFile('slider_image')) {
-
             $file = $request->file('slider_image');
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $file->move('uploads/slider', $fileName);
             $slider->slider_image = $fileName;
-
         }
-
         $slider->save();
-        return redirect('admin/slider')->with('message','slider added successfully');
+        return redirect('admin/slider')->with('message', 'slider added successfully');
     }
 
     /**
@@ -67,12 +64,11 @@ class SliderController extends Controller
      * Show the form for editing the specified resource.
      */
 
-        public function edit($id)
-        {
-            $slider = Slider::find($id);
-            return view('Backend.Slider.edit',compact('slider'));
-
-        }
+    public function edit($id)
+    {
+        $slider = Slider::find($id);
+        return view('Backend.Slider.edit', compact('slider'));
+    }
 
 
 
@@ -81,23 +77,21 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-           $slider = Slider::find($id);
+        $slider = Slider::find($id);
 
-            $slider->slider_tittle = $request->slider_tittle;
-            $slider->slider_subtittle = $request->slider_subtittle;
-            $slider->status=$request->status;
+        $slider->slider_tittle = $request->slider_tittle;
+        $slider->slider_subtittle = $request->slider_subtittle;
+        $slider->status = $request->status;
 
-            if ($request->hasFile('slider_image')) {
+        if ($request->hasFile('slider_image')) {
 
-                $file = $request->file('slider_image');
-                $fileName = time() . '.' . $file->getClientOriginalExtension();
-                $file->move('uploads/slider', $fileName);
-                $slider->slider_image = $fileName;
-
-            }
-            $slider->save();
-            return redirect('admin/slider');
-
+            $file = $request->file('slider_image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/slider', $fileName);
+            $slider->slider_image = $fileName;
+        }
+        $slider->save();
+        return redirect('admin/slider');
     }
 
     /**
@@ -105,8 +99,8 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-      $slider=Slider::find($id);
-      $slider->delete();
-      return redirect('admin/slider');
+        $slider = Slider::find($id);
+        $slider->delete();
+        return redirect('admin/slider');
     }
 }

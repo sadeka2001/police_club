@@ -30,35 +30,8 @@
             {{--  <script src="https://maps.google.com/maps/api/js?sensor=true"></script>  --}}
         </div>
     </div>
+      @include('backend.layout._script')
 
-    <script type="text/javascript" src="{{ asset('assets/scripts/main.js') }}"></script>
-
-
-<!-- its for paginate and search  -->
-
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('assets/js/scripts.js') }}"></script>
-
-<script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script>
-
-         new DataTable('#table');
-
-    </script>
-
-<!-- its for summernote and search  -->
-
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#mysummernote").summernote({
-            height: 300,    
-        });
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
 
 </body>
 
