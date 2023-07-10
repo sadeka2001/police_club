@@ -81,18 +81,4 @@
     </div>
 @endsection
 
-@push('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
-    <!-- sweetalert css link -->
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-@endpush
 
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-@endpush
-@push('customJS')
-    <script>
-        new DataTable('#table');
-    </script>
-@endpush

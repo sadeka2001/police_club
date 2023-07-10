@@ -1,80 +1,64 @@
 @extends('backend.master')
 @section('content')
-    <div class="container p-5">
-        <div class="app-page-title" style="background-color: #9dbacd">
-            <div class="d-flex justify-content-between">
-                <div class="">
+    <div class="app-main__inner">
+
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
+                    </div>
                     <div>
-                        <h4>News Information Here</h4>
+                       News Create
                     </div>
                 </div>
-                <div class="">
-                    <a href="{{ route('admin.news.index') }}" class="btn bg-primary text-white"><i
-                            class="fa fa-plus-circle"></i> All New</a>
+                <div class="page-title-actions">
+                    <a href="{{ route('admin.news.index') }}" class="mb-2 mr-2 btn btn-danger"><i class="fa fa-reply"></i>
+                        Back to list</a>
                 </div>
             </div>
-
-            <div class="mt-2">
+        </div>
+        <div class="main-card mb-3 card">
+            <div class="card-body">
                 <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-sm-2 col-md-8 ">
-                            <div class="card p-4">
-                                <div class="card-header">
-                                    <h5 class="card-tittle">News</h5>
-                                </div>
-                                <div class="row mb-3 ">
-                                    <label for="news_tittle" class="col-sm-2 col-form-label">News Title</label>
-                                    <div class="col-sm-10 mt-2">
-                                        <input type="text" class="form-control" id="news_tittle" name="news_tittle"
-                                            placeholder="news title here">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="news_desc" class="col-sm-2 col-form-label">News Detail</label>
-                                    <div class="col-sm-10 mt-2">
-                                        <textarea class="form-control" placeholder="News details here" id="news_desc" name="news_desc"></textarea>
-                                        {{-- <input type="email" class="form-control" id="inputEmail3"> --}}
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 col-md-4">
-                            <div class="card p-4">
-                                <div class="card-header">
-                                    <h5 class="card-tittle">Picture </h5>
-                                </div>
+                        <div class="col-md-8">
+                            <div class="card">
                                 <div class="card-body">
-                                    <div class="row mb-3">
-                                        {{-- <label for="logo" class="" name="logo">Logo</label> --}}
-                                        <input type="file" name="news_image" placeholder="Choose image" id="news_image">
-                                        {{-- <img src="{{asset('uploads/general/')}}"> --}}
-
+                                    <div class="form-group">
+                                        <label>News Title</label>
+                                        <input type="text" name="news_tittle" class="form-control">
                                     </div>
-
+                                    <div class="form-group">
+                                        <label>News description</label>
+                                        <textarea type="text" name="news_desc" class="form-control" rows="3"></textarea>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Slider Image</label>
+                                        <input type="file" name="news_image" class="form-control"
+                                            id="news_image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Create</button>
+                        <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> CREATE</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    {{-- <br><br>
-    <hr>
-    <div>
-        <div>
-            <a href="{{ route('admin.general.index') }}">Index</a><br>
-            <a href="{{ route('admin.general.store') }}">Store</a>
-        </div>
-    </div> --}}
 @endsection
+
+
+
+
